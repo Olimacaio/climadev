@@ -19,4 +19,3 @@ jobs:
          REMOTE_USER: ${{secrets.FTP_USERNAME}}
          REMOTE_PORT: ${{secrets.FTP_PORT}}
          TARGET: ${{secrets.SSH_TARGET}}
-         EXCLUDE: "/dist/, /node_modules/"
