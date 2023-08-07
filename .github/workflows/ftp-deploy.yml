@@ -13,8 +13,8 @@ jobs:
       uses: easingthemes/ssh-deploy@main
       env:
          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-         delete: "-rltgoDzv0 --delete"
+         delete: "-rltgoDzv0 --delete /home2/tesadev/public_html/"
          REMOTE_HOST: teste-git.climadev.com
          REMOTE_USER: tesadev
          REMOTE_PORT: 2222
-         TARGET: /home2/tesadev/plublic_html/
+         TARGET: /home2/tesadev/public_html/
