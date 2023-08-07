@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Sync with rsync
       run: |
-        rsync -rltgoDzv0 --delete /home2/tesadev/public_html/ $GITHUB_WORKSPACE/
+        rsync -rltgoDzv0 --delete /home2/tesadev/public_html/
     - name: Deploy para meu hosting
       uses: easingthemes/ssh-deploy@main
       env:
