@@ -1,0 +1,41 @@
+name: Sync Databases
+
+on:
+  push:
+    branches:
+      - main   # Trigger the workflow when code is pushed to the main branch
+  schedule:
+    - cron: '0 0 * * *'   # Run the workflow every day at midnight (UTC)
+
+jobs:
+  sync_databases:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install database client
+        run: |
+          # Install the necessary database client for your specific database types
+          # For example, you might install MySQL or PostgreSQL client here
+          # Replace the following line with the appropriate installation command
+          # Example for MySQL: apt-get install mysql-client
+          apt-get install mysql-client
+
+      - name: Sync Production Database with Test
+        env:
+          PRODUCTION_DB_URL: ${{ secrets.PRODUCTION_DB_URL }}
+          TEST_DB_URL: ${{ secrets.TESTE_DB_URL }}
+        run: |
+          # Replace the following lines with the commands to sync databases
+          # For example, you might use a tool like mysqldump or pg_dump to export
+          # the production data and then import it into the test database
+          # Example for MySQL: mysqldump -h production_db_host -u production_user -p production_db_name | mysql -h test_db_host -u test_user -p test_db_name
+          # Example for PostgreSQL: pg_dump -h production_db_host -U production_user -d production_db_name | psql -h test_db_host -U test_user -d test_db_name
+          mysqldump -h teste-git.climadev.com -u tesadev_user -p tesadev_db | mysql -h https://localhost/climadev/ -u tesadev_user -p tesadev_db
