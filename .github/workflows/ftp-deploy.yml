@@ -1,0 +1,20 @@
+name: SSH Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout do repositorio
+      uses: actions/checkout@v3
+    - name: Deploy para meu hosting
+      uses: easingthemes/ssh-deploy@main
+      env:
+         SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+         ARGS: "-rltgoDzv0 --delete"
+         REMOTE_HOST: ${{secrets.FTP_SERVER}}
+         REMOTE_USER: ${{secrets.FTP_USERNAME}}
+         REMOTE_PORT: ${{secrets.FTP_PORT}}
+         TARGET: ${{secrets.FTP_TARGET}}
