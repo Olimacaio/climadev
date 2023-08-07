@@ -14,8 +14,9 @@ jobs:
       env:
          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
          ARGS: "-rlgoDzvc -i --delete"
-         SOURCE: "dist/"
+         SOURCE: "/"
          REMOTE_HOST: ${{secrets.FTP_SERVER}}
          REMOTE_USER: ${{secrets.FTP_USERNAME}}
          REMOTE_PORT: ${{secrets.FTP_PORT}}
          TARGET: ${{secrets.SSH_TARGET}}
+         EXCLUDE: "/, /node_modules/"
